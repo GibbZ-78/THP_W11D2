@@ -40,27 +40,44 @@ function getLotoNumbers() {
   return myLotoTab;
 }
 
-// Check if the provided e-mail address is correctly formatted
-function testEmail(testMailAddress) {
+// Check if the provided e-mail address is neither "undefined", nor "null", nor empty, and correctly formatted
+function isEmailOK(testMailAddress) {
   let myTest = !!testMailAddress && testMailAddress.length > 8 && testMailAddress.length < 30;
-  myTest &= testMailAddress.match(/^[a-z0-9]+[.]?[a-z0-9]+[@][a-z0-9]+[.][a-z]{2,3}$/) !== null;
+  myTest &= testMailAddress.match(/^[a-z0-9]+[.]?[a-z0-9]*[@][a-z0-9]{3,63}[.][a-z]{2,}$/) !== null;
   return myTest;
+}
+
+// Check if the provided array of numbers is neither "undefined", nor "null", nor empty, and effectively contains 6 numbers
+function areNumbersOK(testNbrsTab) {
+  let myTest = !!testNbrsTab && testNbrsTab.length == 6;
+  return myTest;
+}
+
+// Display a parametered modal to warn on an error OR announce a win / lose !
+function displayPolymorphModal(myDedicatedTitle, myDedicatedMessage) {
+  document.getElementById("staticBackdropLabel").innerText = myDedicatedTitle;
+  document.getElementById("myModalBody").innerText = myDedicatedMessage;
+  myModal.show();
 }
 
 // and checking if all entries are OK (e.g. first name not empty, mail address correctly formatted...)
 // as well as if the player has won or not after a random draw
 function checkLoto(xfirstname, xlastname, xemail, xnumbers) { 
   if (!xfirstname) {
-    document.getElementById("myModalBody").innerHTML = "Veuillez fournir un prénom, s'il-vous-plaît.";
-    myModal.show();
+    displayPolymorphModal("Problème sur le prénom", "Veuillez fournir un prénom, s'il-vous-plaît.");
+    return false;
   } else if (!xlastname){
-    document.getElementById("myModalBody").innerHTML = "Merci de saisir un nom de famille, s'il-vous-plaît.";
-    myModal.show();
-  } else if (!testEmail(xemail)){
-    document.getElementById("myModalBody").innerHTML = "Une adresse e-mail correcte est attendue, s'il-vous-plaît. Or, vous avez fourni '"+ xemail +"'.";
-    myModal.show();
+    displayPolymorphModal("Problème de nom de famille", "Merci de saisir un nom de famille, s'il-vous-plaît.");
+    return false;
+  } else if (!isEmailOK(xemail)){
+    displayPolymorphModal("Problème dans l'adresse e-mail", `Une adresse e-mail correctement formatée est attendue, s'il-vous-plaît. Or, vous avez fourni '${xemail}'.`);
+    return false;
+  } else if (!areNumbersOK(xnumbers)) {
+    displayPolymorphModal("Problème de nom de famille", `Il y a un problème sur les numéros choisis, désolé. Vous avez sélectionné: ${xnumbers} (${xnumbers.length} numéros).`);
+    return false;
   } else {
     window.alert(`Prénom: ${xfirstname} - Nom: ${xlastname} - Mail: ${xemail} - Numéros: ${xnumbers}`);
+    return true;
   }
 };
 
@@ -75,7 +92,7 @@ function formatCurrentDateInFrench(){
   let myYear = myDT.getFullYear();
   let myHours = myDT.getHours();
   let myMinutes = myDT.getMinutes();
-  let myFinalDateInFrenchString = myDay + " " + myDate + " " + myMonth + " " + myYear + " à " + myHours + " heure(s) " + myMinutes + " minute(s).";
+  let myFinalDateInFrenchString = `${myDay} ${myDate} ${myMonth} ${myYear} à ${myHours} heure(s) ${myMinutes} minute(s)`;
   return myFinalDateInFrenchString;
 }
 
@@ -83,9 +100,10 @@ function formatCurrentDateInFrench(){
 // It logs the percise time at which the form has been validated the handle it to the "checkLoto" function
 function handleMyFormEvent(event){
   let myDateTime = formatCurrentDateInFrench();
-  document.getElementById('myLog').innerText = `Formulaire validé le ${myDateTime}.`;
-  event.preventDefault();
-  checkLoto(getFirstName(), getLastName(),getEmail (),getLotoNumbers());
+  event.preventDefault(); // Prevent the form to trigger the "submit" event, reinitializing all its conten
+  if (checkLoto(getFirstName(), getLastName(), getEmail (), getLotoNumbers())) {
+    document.getElementById('myLog').innerText = `Formulaire de jeu validé le ${myDateTime}.`;
+  }
 }
 
 // Locating the whole form submit button via its ID then adding a "click" event listener to it
