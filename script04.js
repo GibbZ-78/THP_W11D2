@@ -54,8 +54,13 @@ function areNumbersOK(testNbrsTab) {
 }
 
 // Display a parametered modal to warn on an error OR announce a win / lose !
-function displayPolymorphModal(myDedicatedTitle, myDedicatedMessage) {
+function displayPolymorphModal(myDedicatedTitle, myDedicatedMessage, myDedicatedClass) {
   document.getElementById("staticBackdropLabel").innerText = myDedicatedTitle;
+  document.getElementById("staticBackdropLabel").classList.remove("text-success");
+  document.getElementById("staticBackdropLabel").classList.remove("text-danger");
+  document.getElementById("staticBackdropLabel").classList.remove("text-primary");
+  document.getElementById("staticBackdropLabel").classList.remove("text-warning");
+  document.getElementById("staticBackdropLabel").classList.add(myDedicatedClass);
   document.getElementById("myModalBody").innerText = myDedicatedMessage;
   myModal.show();
 }
@@ -64,19 +69,19 @@ function displayPolymorphModal(myDedicatedTitle, myDedicatedMessage) {
 // as well as if the player has won or not after a random draw
 function checkLoto(xfirstname, xlastname, xemail, xnumbers) { 
   if (!xfirstname) {
-    displayPolymorphModal("Problème sur le prénom", "Veuillez fournir un prénom, s'il-vous-plaît.");
+    displayPolymorphModal("Problème sur le prénom", "Veuillez fournir un prénom, s'il-vous-plaît.", "text-danger");
     return false;
   } else if (!xlastname){
-    displayPolymorphModal("Problème de nom de famille", "Merci de saisir un nom de famille, s'il-vous-plaît.");
+    displayPolymorphModal("Problème de nom de famille", "Merci de saisir un nom de famille, s'il-vous-plaît.", "text-danger");
     return false;
   } else if (!isEmailOK(xemail)){
-    displayPolymorphModal("Problème dans l'adresse e-mail", `Une adresse e-mail correctement formatée est attendue, s'il-vous-plaît. Or, vous avez fourni '${xemail}'.`);
+    displayPolymorphModal("Problème dans l'adresse e-mail", `Une adresse e-mail correctement formatée est attendue, s'il-vous-plaît. Or, vous avez fourni '${xemail}'.`, "text-danger");
     return false;
   } else if (!areNumbersOK(xnumbers)) {
-    displayPolymorphModal("Problème de nom de famille", `Il y a un problème sur les numéros choisis, désolé. Vous avez sélectionné: ${xnumbers} (${xnumbers.length} numéros).`);
+    displayPolymorphModal("Problème sur vos numéros", `Il y a un problème sur les numéros choisis, désolé. Vous avez sélectionné: ${xnumbers} (${xnumbers.length} numéros).`, "text-danger");
     return false;
   } else {
-    window.alert(`Prénom: ${xfirstname} - Nom: ${xlastname} - Mail: ${xemail} - Numéros: ${xnumbers}`);
+    displayPolymorphModal("Jeu et mise enregistrés", `Prénom: ${xfirstname}\nNom: ${xlastname}\nMail: ${xemail}\nNuméros: ${xnumbers}`,"text-success");
     return true;
   }
 };
@@ -96,20 +101,83 @@ function formatCurrentDateInFrench(){
   return myFinalDateInFrenchString;
 }
 
+function displayDrawButton(myToggle) {
+  document.getElementById("mySubmitButton").hidden = myToggle;
+  document.getElementById("myResetButton").hidden = myToggle;
+  document.getElementById("myDrawButton").hidden = !myToggle;
+}
+
 // Here is the method called each time the "Valider" button is pressed on the page form
 // It logs the percise time at which the form has been validated the handle it to the "checkLoto" function
-function handleMyFormEvent(event){
+function handleMySubmitEvent(event){
+  event.preventDefault(); // Prevent the form to trigger the "submit" event, reinitializing all its content
   let myDateTime = formatCurrentDateInFrench();
-  event.preventDefault(); // Prevent the form to trigger the "submit" event, reinitializing all its conten
   if (checkLoto(getFirstName(), getLastName(), getEmail (), getLotoNumbers())) {
-    document.getElementById('myLog').innerText = `Formulaire de jeu validé le ${myDateTime}.`;
+    document.getElementById("myLog").innerText = `Formulaire de jeu validé le ${myDateTime}.`;
+    displayDrawButton(true);
+  } else {
+    document.getElementById("myLog").innerText = "...";
+    displayDrawButton(false);
+  }
+}
+
+// Returns an Integer between "min" (included) and "max" (included)
+// But excluding the (already drawn) values stored into "excluding"
+function getRandomIntInclusive(myMin, myMax, myExclusions) {
+  let min = Math.ceil(myMin);
+  let max = Math.floor(myMax);
+  let shouldstop = false;
+  while (!shouldstop) {
+    draw = Math.floor(Math.random() * (max - min +1)) + min;
+    shouldstop = !myExclusions.includes(draw);
+  }
+  return draw;
+}
+
+// Method testing if 2 arrays of Integers are equals
+function areEqualTabs(tab1,tab2) {
+  const isAlsoinTab2 = (item) => tab2[tab1.findIndex(item)] == item;
+  return (tab1.length == tab2.length) && (tab1.every(isAlsoinTab2));
+}
+
+// Another Method testing if 2 arrays of Integers are equals
+function areEqualTabs2(tab1,tab2) {
+  if (tab1.length == tab2.length) {
+    myEqual = true;
+    for (let index = 0; index < tab1.length; index++) {
+      myEqual &= (tab1[index] == tab2[index]);
+    }
+    return myEqual;
+  } else {
+    return false
+  }  
+}
+
+// This method is launched by the sole and only "Lancer le tirage" button appearing only once all input data has been validated
+function handleMyDrawEvent(event){
+  event.preventDefault(); // Prevent the form to trigger the "submit" event, reinitializing all its content
+  let myDrawnNumbersTab = [];
+  for (let index = 1; index < 7; index++) {
+    myDrawnNumbersTab.push(getRandomIntInclusive(1, 49, myDrawnNumbersTab));
+  }
+  myDrawnNumbersTab = myDrawnNumbersTab.sort();
+  if (areEqualTabs2(getLotoNumbers(), ["3","7","10","14","27","45"])) {
+    displayPolymorphModal("Bon, vous avez (encore) triché !", "Mais fi de la morale, " + getFirstName() + ", puisque vous avez ainsi trouvé les 6 bons numéros du 'Loto folie !' et que vous revient le jackpot de 1,000,000€ !", "text-warning");
+  } else if (areEqualTabs2(getLotoNumbers(), myDrawnNumbersTab)) {
+    displayPolymorphModal("Bravo, vous avez gagné !", "Toutes nos félicitations, " + getFirstName() + ", vous avez trouvé les 6 bons numéros ("+ myDrawnNumbersTab +") du 'Loto folie !' et remportez la somme mirobolante de 1,000,000€ !", "text-success");
+  } else {
+    displayPolymorphModal("Pas de chance... Pour cette fois.", "Désolé, " + getFirstName() + ", vous n'avez pas trouvé TOUS les bons numéros ("+ myDrawnNumbersTab +") pour cette fois mais retentez donc votre chance à Loto folie !", "text-primary");
   }
 }
 
 // Locating the whole form submit button via its ID then adding a "click" event listener to it
-// to activate the "checkLoto()" function validating all form information + won / lost status
-const myButton = document.getElementById('mySubmitButton');
-myButton.addEventListener("click", handleMyFormEvent);
+// to activate the "checkLoto()" function validating all form information 
+// Does the same with the appearing / vanishing "DrawButton" when bet is validated to launch the draw
+// plus determine win / loss
+const submitFormButton = document.getElementById('mySubmitButton');
+submitFormButton.addEventListener("click", handleMySubmitEvent);
+const launchDrawButton = document.getElementById('myDrawButton');
+launchDrawButton.addEventListener("click", handleMyDrawEvent);
 
 /*****************
  *  End of code  *
