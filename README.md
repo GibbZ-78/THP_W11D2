@@ -8,6 +8,8 @@
 
 - **Exercice 3 :** See above. Not hard, even forEach had already disappeared at this stage...
 
+- **Exercice 4 :** This one - at last, was worth waking up this morning. It stands for a simple loto game enabling to learn and train your form validation habilities.
+
 ### :two: How to :bulb:
 
 1. Create an empty directory on your :computer:
@@ -15,7 +17,8 @@
 3. Launch the "index.html" file (no local web server should be needed)
 4. Have super fun :satisfied: with the proposed genuine approach to solve the different exercises
 
-_NB: be sure to check your brower's console to see :eyes: some of the (somehow hidden) results of the above :wink:_
+_NB 1: for exercices 1 to 3, be sure to check your brower's console to see :eyes: the (somehow hidden) results of the above :wink:_
+_NB 2: for exercices 4, if a little more chance was needed, try to check the following number: 3, 7, 10, 14, 27, and 45. Who knows?_
 
 ### :three: Credits :closed_lock_with_key:
 
