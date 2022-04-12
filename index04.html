@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THP - W11D1 - Javascript ES6 - Loto folie !</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+</head>
+
+<body>
+  <header></header>
+  <main class="d-flex flex-column justify-content-center my-3">
+    <section class="row justify-content-center my-2">
+      <div class="col-2">
+        <a class="btn btn-dark shadow" href="./index.html">
+          <i class="bi bi-caret-left-square"></i>
+          Retour à l'écran de choix du script JS.
+        </a>
+      </div>
+    </section>
+    <section class="row justify-content-center my-2">
+      <div class="col-6">
+        <form>
+          <div class="my-2">
+            <label for="myFirstName" class="form-label">Prénom</label>
+            <input type="text" class="form-control" id="myFirstName" />
+          </div>
+          <div class="my-2">
+            <label for="myLastName" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="myLastName" />
+          </div>
+          <div class="my-2">
+            <label for="myEmail" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="myEmail" aria-describedby="emailHelp" />
+            <div id="emailHelp" class="form-text fst-italic">
+              We'll never share your email with anyone else.
+            </div>
+          </div>
+          <div class="mt-4 mb-2">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx1" value="1" />
+              <label class="form-check-label" for="chkbx1">01</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx2" value="2" />
+              <label class="form-check-label" for="chkbx2">02</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx3" value="3" />
+              <label class="form-check-label" for="chkbx3">03</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx4" value="4" />
+              <label class="form-check-label" for="chkbx4">04</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx5" value="5" />
+              <label class="form-check-label" for="chkbx5">05</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx6" value="6" />
+              <label class="form-check-label" for="chkbx6">06</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx7" value="7" />
+              <label class="form-check-label" for="chkbx7">07</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx8" value="8" />
+              <label class="form-check-label" for="chkbx8">08</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx9" value="9" />
+              <label class="form-check-label" for="chkbx9">09</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx10" value="10" />
+              <label class="form-check-label" for="chkbx10">10</label>
+            </div>
+          </div>
+          <div class="my-2">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx11" value="11" />
+              <label class="form-check-label" for="chkbx11">11</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx12" value="12" />
+              <label class="form-check-label" for="chkbx12">12</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx13" value="13" />
+              <label class="form-check-label" for="chkbx13">13</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx14" value="14" />
+              <label class="form-check-label" for="chkbx14">14</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx15" value="15" />
+              <label class="form-check-label" for="chkbx15">15</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx16" value="16" />
+              <label class="form-check-label" for="chkbx16">16</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx17" value="17" />
+              <label class="form-check-label" for="chkbx17">17</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx18" value="18" />
+              <label class="form-check-label" for="chkbx18">18</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx19" value="19" />
+              <label class="form-check-label" for="chkbx19">19</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx20" value="20" />
+              <label class="form-check-label" for="chkbx20">20</label>
+            </div>
+          </div>
+          <div class="my-2">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx21" value="21" />
+              <label class="form-check-label" for="chkbx21">21</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx22" value="22" />
+              <label class="form-check-label" for="chkbx22">22</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx23" value="23" />
+              <label class="form-check-label" for="chkbx23">23</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx24" value="24" />
+              <label class="form-check-label" for="chkbx24">24</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx25" value="25" />
+              <label class="form-check-label" for="chkbx25">25</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx26" value="26" />
+              <label class="form-check-label" for="chkbx26">26</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx27" value="27" />
+              <label class="form-check-label" for="chkbx27">27</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx28" value="28" />
+              <label class="form-check-label" for="chkbx28">28</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx29" value="29" />
+              <label class="form-check-label" for="chkbx29">29</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx30" value="30" />
+              <label class="form-check-label" for="chkbx30">30</label>
+            </div>
+          </div>
+          <div class="my-2">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx31" value="31" />
+              <label class="form-check-label" for="chkbx31">31</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx32" value="32" />
+              <label class="form-check-label" for="chkbx32">32</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx33" value="33" />
+              <label class="form-check-label" for="chkbx33">33</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx34" value="34" />
+              <label class="form-check-label" for="chkbx34">34</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx35" value="35" />
+              <label class="form-check-label" for="chkbx35">35</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx36" value="36" />
+              <label class="form-check-label" for="chkbx36">36</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx37" value="37" />
+              <label class="form-check-label" for="chkbx37">37</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx38" value="38" />
+              <label class="form-check-label" for="chkbx38">38</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx39" value="39" />
+              <label class="form-check-label" for="chkbx39">39</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx40" value="40" />
+              <label class="form-check-label" for="chkbx40">40</label>
+            </div>
+          </div>
+          <div class="my-2">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx41" value="41" />
+              <label class="form-check-label" for="chkbx41">41</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx42" value="42" />
+              <label class="form-check-label" for="chkbx42">42</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx43" value="43" />
+              <label class="form-check-label" for="chkbx43">43</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx44" value="44" />
+              <label class="form-check-label" for="chkbx44">44</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx45" value="45" />
+              <label class="form-check-label" for="chkbx45">45</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx46" value="46" />
+              <label class="form-check-label" for="chkbx46">46</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx47" value="47" />
+              <label class="form-check-label" for="chkbx47">47</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx48" value="48" />
+              <label class="form-check-label" for="chkbx48">48</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="chkbx49" value="49" />
+              <label class="form-check-label" for="chkbx49">49</label>
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <input type="submit" value="Valider" class="btn btn-primary" />
+            <input type="reset" value="Réinitialiser" class="btn btn-secondary" />
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer></footer>
+  <script src="./script04.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

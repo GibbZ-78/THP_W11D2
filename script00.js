@@ -22,6 +22,9 @@ function loadAdequateJS() {
     case "3":
       window.location = "./index03.html";
       break;
+    case "4":
+      window.location = "./index04.html";
+      break;
     default:
       console.log("No valid selection (yet)...");
       break;
