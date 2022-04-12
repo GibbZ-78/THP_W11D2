@@ -8,7 +8,7 @@
 
 - **Exercice 3 :** See above. Not hard, even forEach had already disappeared at this stage...
 
-- **Exercice 4 :** This one - at last, was worth waking up this morning. It stands for a simple loto game enabling to learn and train your form validation habilities.
+- **Exercice 4 :** This one - at last! - was worth waking up this morning. It stands for a simple loto game enabling to learn and train your form validation habilities.
 
 ### :two: How to :bulb:
 
